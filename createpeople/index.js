@@ -18,15 +18,15 @@ exports.handler = async (event) => {
   try{
     let id = Math.floor(Math.random() * 100);
     const person = new peopleTable({id, ...jsonBody});
-
     data = await person.save();
+    status = 200;
   } catch (error){
     status = 400;
     data = new Error(error);
   }
 
   const response = {
-    statusCode: 200,
+    status: status,
     body: JSON.stringify(data),
   };
   return response;
