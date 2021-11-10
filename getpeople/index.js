@@ -8,21 +8,22 @@ exports.handler = async (event) => {
     'age': Number
   });
 
+  const peopleTable = dynamoose.model('people', peopleSchema);
+
   let data = null;
   let status = 500;
 
   try {
-    data = await peopleSchema.scan().exec();
+    data = await peopleTable.scan().exec();
     status = 200;
   } catch (error) {
     data = new Error(error);
     status = 400;
   }
   
-
   const response = {
     statusCode: 200,
-    body: JSON.stringify('Here are some people you might know!', data),
+    body: JSON.stringify(data),
   };
   return response;
 };
