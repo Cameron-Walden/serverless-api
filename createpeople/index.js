@@ -20,13 +20,14 @@ exports.handler = async (event) => {
     const person = new peopleTable({id, ...jsonBody});
     data = await person.save();
     status = 200;
+
   } catch (error){
     status = 400;
     data = new Error(error);
   }
 
   const response = {
-    status: status,
+    statusCode: status,
     body: JSON.stringify(data),
   };
   return response;
