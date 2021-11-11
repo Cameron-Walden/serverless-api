@@ -14,11 +14,13 @@ exports.handler = async (event) => {
 
   let data = null;
   let status = 500;
+  // let id = parseInt(event.pathParameters.id);
 
   try{
-    let id = Math.floor(Math.random() * 100);
-    const person = new peopleTable({id, ...jsonBody});
-    updatePerson = await person.update();
+    const id = event.pathParameters.id
+    // const person = new peopleTable({id, ...jsonBody});
+    data = await peopleTable.update({id: id});
+    // data = await peopleTable.scan.exec();
     status = 200;
 
   } catch (error){
@@ -28,7 +30,7 @@ exports.handler = async (event) => {
 
   const response = {
     statusCode: status,
-    body: JSON.stringify(updatePerson),
+    body: JSON.stringify(data),
     message: 'You have successfully updated a person!'
   };
   return response;

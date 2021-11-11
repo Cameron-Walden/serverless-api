@@ -16,10 +16,11 @@ exports.handler = async (event) => {
   let status = 500;
 
   try{
-    let id = Math.floor(Math.random() * 100);
-    const person = new peopleTable({id, ...jsonBody});
+    const id = event.pathParameters.id;
+    // let id = Math.floor(Math.random() * 100);
+    // const person = new peopleTable(id);
     // deletePerson = await peopleTable.delete({id: id});
-    deletePerson = await person.delete();
+    data = await peopleTable.delete({id: id});
     status = 200;
 
   } catch (error){
@@ -29,7 +30,7 @@ exports.handler = async (event) => {
 
   const response = {
     statusCode: status,
-    body: JSON.stringify(deletePerson),
+    body: JSON.stringify(data),
     message: 'You have successfully removed a person!'
   };
   return response;
