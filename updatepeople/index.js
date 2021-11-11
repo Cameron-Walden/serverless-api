@@ -18,7 +18,7 @@ exports.handler = async (event) => {
   try{
     let id = Math.floor(Math.random() * 100);
     const person = new peopleTable({id, ...jsonBody});
-    updatePerson = await peopleTable.update(person);
+    updatePerson = await person.update();
     status = 200;
 
   } catch (error){
