@@ -6,6 +6,12 @@
 
 ***
 
+## Root URL for API
+
+https://r3ta8qrsie.execute-api.us-west-2.amazonaws.com/Production/people
+
+***
+
 ## Routes
 
 - **POST**
