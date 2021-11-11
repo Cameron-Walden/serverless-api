@@ -17,8 +17,9 @@ exports.handler = async (event) => {
 
   try{
     let id = Math.floor(Math.random() * 100);
-    // const person = new peopleTable({id, ...jsonBody});
-    deletePerson = await peopleTable.delete({id: id});
+    const person = new peopleTable({id, ...jsonBody});
+    // deletePerson = await peopleTable.delete({id: id});
+    deletePerson = await person.delete();
     status = 200;
 
   } catch (error){
